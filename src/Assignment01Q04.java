@@ -3,7 +3,31 @@ import java.util.Arrays;
 public class Assignment01Q04 {
 
     public static int[] shiftArrayCyclic(int[] array, int move, char direction) {
-        // TODO: implement
+        if (array.length == 0) {
+            return array; 
+        }
+        if (direction != 'L' && direction != 'R') {
+            return array; 
+        }
+        if (move < 0) {
+                direction = (direction == 'L') ? 'R' : 'L';
+            }
+        for (int i = 0; i < Math.abs(move%array.length); i++) {         
+            if (direction == 'L') {
+                int first = array[0];
+                for (int j = 0; j < array.length - 1; j++) {
+                    array[j] = array[j + 1];
+                }
+                array[array.length - 1] = first;
+            } else if (direction == 'R') {
+                int last = array[array.length - 1];
+                for (int j = array.length - 1; j > 0; j--) {
+                    array[j] = array[j - 1];
+                }
+                array[0] = last;
+            }
+        }
+
         return array;
     }
 
